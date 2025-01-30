@@ -7,3 +7,6 @@ node_modules/
 # Ignore build folder
 /dist
 /build
+
+# Ignore test coverage folder
+/coverage

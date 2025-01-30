@@ -1,7 +1,7 @@
 import React from 'react';
 
 const App = () => {
-    return <div>Seeking Alpha - Cards</div>;
+    return <h1>Seeking Alpha - Cards</h1>;
 };
 
 export default App;
