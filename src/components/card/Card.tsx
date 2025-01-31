@@ -8,7 +8,7 @@ interface Props {
 const Card: FC<Props> = ({header, children}: Props) => {
     return (
         <article className="box">
-            {!!header && <h6 className="title is-6">{header}</h6>}
+            {!!header && <h4 className="title is-4 has-text-grey has-text-weight-semibold">{header}</h4>}
             {children}
         </article>
     );

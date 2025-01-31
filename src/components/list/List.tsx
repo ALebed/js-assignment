@@ -1,5 +1,5 @@
 import {FC} from "react";
-import ListItem, {Props as Item} from "./ListItem";
+import ListItem, {Item} from "./ListItem";
 
 interface Props {
     items: Item[];

@@ -1,9 +1,10 @@
 import {render, screen, within} from "@testing-library/react";
 import List from "./List";
+import {Item} from "./ListItem";
 
 describe("List", () => {
     it("renders correctly", () => {
-        render(<List />);
+        render(<List items={undefined as unknown as Item[]} />);
     });
 
     it("displays informative message for empty data", () => {
