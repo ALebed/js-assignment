@@ -8,8 +8,8 @@ export interface Props {
 const ListItem: FC<Props> = ({title, description}: Props) => {
     return (
         <li className="list-item">
-            <div className="list-item__title">{title}</div>
-            <div className="list-item__description">{description}</div>
+            <div className="list-item-title">{title}</div>
+            <div className="list-item-description">{description}</div>
         </li>
     );
 };

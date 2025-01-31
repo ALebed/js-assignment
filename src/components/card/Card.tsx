@@ -7,8 +7,8 @@ interface Props {
 
 const Card: FC<Props> = ({header, children}: Props) => {
     return (
-        <article className="card">
-            {!!header && <h4 className="card-title">{header}</h4>}
+        <article className="box">
+            {!!header && <h6 className="title is-6">{header}</h6>}
             {children}
         </article>
     );
