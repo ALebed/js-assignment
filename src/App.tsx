@@ -1,8 +1,10 @@
 import {FC, useState} from "react";
 import QuantRankingCard from "./containers/quantRanking/QuantRankingCard";
 import UserContext, {User} from "./services/user/UserContext";
+import ErrorBoundary from "./components/errorBoundary/ErrorBoundary";
 
 const App: FC = () => {
+    const [hasError] = useState<boolean>(false);
     const [user] = useState<User>({isPremium: true});
     const mockData = [
         {title: "title1", description: "descr1"},
@@ -11,16 +13,18 @@ const App: FC = () => {
     ];
 
     return (
-        <UserContext.Provider value={user}>
-            <main className="content">
-                <nav role="navigation" className="navbar">
-                    <h1 className="title">Seeking Alpha - Cards</h1>
-                </nav>
-                <section role="section" className="section container">
-                    <QuantRankingCard data={mockData} />
-                </section>
-            </main>
-        </UserContext.Provider>
+        <ErrorBoundary hasError={hasError}>
+            <UserContext.Provider value={user}>
+                <main className="content">
+                    <nav className="navbar">
+                        <h1 className="title">Seeking Alpha - Cards</h1>
+                    </nav>
+                    <section className="section container">
+                        <QuantRankingCard data={mockData} />
+                    </section>
+                </main>
+            </UserContext.Provider>
+        </ErrorBoundary>
     );
 };
 
