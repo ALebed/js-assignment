@@ -34,7 +34,7 @@ describe("Card", () => {
 
     it("includes given element into the header element", () => {
         render(
-            <Card header={<div data-testid="card-header">Simple Header"</div>}>
+            <Card header={<div data-testid="card-header">Simple Header</div>}>
                 Simple Card
             </Card>
         );

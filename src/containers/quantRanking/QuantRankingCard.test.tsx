@@ -7,7 +7,7 @@ jest.mock("../../utils/isObjectEmpty", () => ({
 }));
 
 jest.mock("../../services/user/withPremium", () => ({
-    withPremium: (Component: any) => Component,
+    withPremium: <T,>(Component: T) => Component,
 }));
 
 describe("QuantRankingCard", () => {
