@@ -3,6 +3,7 @@ import QuantRankingCard from "./containers/quantRanking/QuantRankingCard";
 import UserContext from "./hocs/UserContext";
 import ErrorBoundary from "./components/errorBoundary/ErrorBoundary";
 import {useDataFetch} from "./hooks/useDataFetch";
+import RatingsSummaryCard from "./containers/summary/RatingsSummaryCard";
 
 const App: FC = () => {
     const {model, hasError, isLoaded} = useDataFetch();
@@ -17,6 +18,7 @@ const App: FC = () => {
                     {
                         isLoaded ? (
                             <section className="section container">
+                                <RatingsSummaryCard data={model.summary} />
                                 <QuantRankingCard data={model.ranking} />
                             </section>
                         ) : (
