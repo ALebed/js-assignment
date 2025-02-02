@@ -1,6 +1,6 @@
 import {FC, ReactNode} from "react";
 
-interface Props {
+export interface Props {
     header?: ReactNode,
     children: ReactNode,
 }

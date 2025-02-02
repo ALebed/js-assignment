@@ -1,16 +1,30 @@
 import {FC} from "react";
 import QuantRankingCard from "./containers/quantRanking/QuantRankingCard";
-import UserContext from "./hocs/UserContext";
+import UserContext, {User} from "./hocs/UserContext";
 import ErrorBoundary from "./components/errorBoundary/ErrorBoundary";
-import {useDataFetch} from "./hooks/useDataFetch";
+import {FetchConfig, useDataFetch} from "./hooks/useDataFetch";
 import RatingsSummaryCard from "./containers/summary/RatingsSummaryCard";
+import {UserDTO} from "./data/dataTypes";
+import {normalizeUser} from "./data/normalizeData";
+import FactorGradesCard from "./containers/factorGrades/FactorGradesCard";
+
+const USER_PATH = "user";
+const fetchConfig: FetchConfig<User, UserDTO> = {
+    path: USER_PATH,
+    normalize: normalizeUser,
+    initialState: {isPremium: false},
+};
 
 const App: FC = () => {
-    const {model, hasError, isLoaded} = useDataFetch();
+    const {
+        state: user,
+        hasError,
+        isLoaded,
+    } = useDataFetch<User, UserDTO>(fetchConfig);
 
     return (
         <ErrorBoundary hasError={hasError}>
-            <UserContext.Provider value={model.user}>
+            <UserContext.Provider value={user}>
                 <main className="content">
                     <nav className="navbar">
                         <h1 className="title">Seeking Alpha - Cards</h1>
@@ -18,8 +32,9 @@ const App: FC = () => {
                     {
                         isLoaded ? (
                             <section className="section container">
-                                <RatingsSummaryCard data={model.summary} />
-                                <QuantRankingCard data={model.ranking} />
+                                <RatingsSummaryCard />
+                                <FactorGradesCard />
+                                <QuantRankingCard />
                             </section>
                         ) : (
                             <div>Data Loading...</div> // TODO: add spinner

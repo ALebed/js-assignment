@@ -1,48 +1,33 @@
 import {useEffect, useState} from "react";
-import {QuantRankingDTO, RatingsSummaryDTO, UserDTO} from "./dataTypes";
-import {
-    normalizeQuantRanking,
-    normalizeUser,
-    normalizeRatingsSummary,
-    QuantRanking,
-    User,
-    RatingsSummary,
-} from "./normalizeData";
 import api from "../services/api";
 
-export interface AppModel {
-    user: User;
-    ranking: QuantRanking;
-    summary: RatingsSummary[],
+export interface FetchConfig<S, D> {
+    path: string | string[];
+    normalize?: (data: D) => S;
+    initialState: S;
 }
 
-const USER_PATH = "user";
-const RATINGS_SUMMARY_PATH = "ratings-summary";
-const RANKING_PATH = "quant-ranking";
+export const useDataFetch = <S, D>(config: FetchConfig<S, D>) => {
+    const {path, normalize, initialState} = config;
 
-export const useDataFetch = () => {
     const [isLoaded, setIsLoaded] = useState<boolean>(false);
     const [hasError, setHasError] = useState<boolean>(false);
-    const [model, setModel] = useState<AppModel>({} as AppModel);
+    const [state, setState] = useState<S>(initialState);
 
     useEffect(() => {
         const fetchAndSetData = async () => {
             try {
-                const [
-                    userDTO,
-                    ratingsSummaryDTO,
-                    quantRankingDTO,
-                ] = await Promise.all([
-                    api<UserDTO>(USER_PATH),
-                    api<RatingsSummaryDTO>(RATINGS_SUMMARY_PATH),
-                    api<QuantRankingDTO>(RANKING_PATH),
-                ]);
-
-                setModel({
-                    user: normalizeUser(userDTO),
-                    summary: normalizeRatingsSummary(ratingsSummaryDTO),
-                    ranking: normalizeQuantRanking(quantRankingDTO),
-                });
+                if (typeof path === "string") {
+                    const data: D = await api<D>(path);
+                    if (normalize) {
+                        setState(normalize(data));
+                    } else {
+                        setState(data as unknown as S);
+                    }
+                } else {
+                    const data: unknown[] = await Promise.all(path.map(p => api(p)));
+                    setState(data as unknown as S);
+                }
             } catch (error) {
                 // eslint-disable-next-line no-console
                 console.log("Fetch error:", (error as Error).message);
@@ -54,5 +39,5 @@ export const useDataFetch = () => {
         fetchAndSetData();
     }, []);
 
-    return {model, isLoaded, hasError};
+    return {state, isLoaded, hasError};
 };

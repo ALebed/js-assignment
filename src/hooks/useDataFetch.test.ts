@@ -1,8 +1,8 @@
 import {renderHook, act} from "@testing-library/react";
 import {useDataFetch} from "./useDataFetch";
 import api from "../services/api";
-import {normalizeUser, normalizeQuantRanking, normalizeRatingsSummary} from "./normalizeData";
-import {QuantRankingDTO, RatingsSummaryDTO, UserDTO} from "./dataTypes";
+import {normalizeUser, normalizeQuantRanking, normalizeRatingsSummary} from "../data/normalizeData";
+import {QuantRankingDTO, RatingsSummaryDTO, UserDTO} from "../data/dataTypes";
 
 jest.mock("../services/api");
 
