@@ -1,26 +1,25 @@
 import {FC} from "react";
 import Table from "../../components/table/Table";
 import {normalizeRatingsSummary, RatingsSummary} from "../../data/normalizeData";
-import {Column, Row} from "../../components/table/TableRow";
+import {BaseType, Column} from "../../components/table/TableRow";
 import {withPremium} from "../../hocs/withPremium";
-import {RatingsSummaryDTO} from "../../data/dataTypes";
+import {RatingsSummaryDTO} from "../../services/DTOs";
 import WithFetchingCard from "../../components/card/WithFetchingCard";
 import {FetchConfig} from "../../hooks/useDataFetch";
 
-const RATINGS_SUMMARY_PATH = "ratings-summary";
 const fetchConfig: FetchConfig<RatingsSummary[], RatingsSummaryDTO> = {
-    path: RATINGS_SUMMARY_PATH,
+    path: "ratings-summary",
     normalize: normalizeRatingsSummary,
     initialState: [],
 };
-const columns: Column[] = [
+const columns: Column<RatingsSummary & BaseType>[] = [
     {id: "label", title: "label"},
     {id: "rating", title: "rating"},
     {id: "score", title: "score"},
 ];
 
 const RatingsSummaryCard: FC = () => {
-    const enhanceData = (data: RatingsSummary[]): (RatingsSummary & Row)[] => data.map((row: RatingsSummary) => ({
+    const enhanceData = (data: RatingsSummary[]): (RatingsSummary & BaseType)[] => data.map((row: RatingsSummary) => ({
         ...row,
         id: row.label,
     }));

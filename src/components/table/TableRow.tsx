@@ -1,22 +1,21 @@
-import {FC} from "react";
+import {ReactNode} from "react";
 
-export interface Row {
+export interface BaseType {
     id: string;
 }
-export interface Column {
-    id: string;
-    title: string;
+export interface Column<C> extends BaseType {
+    title: keyof C;
 }
-interface Props {
-    row: Row;
-    columns: Column[];
+interface Props<T extends BaseType> {
+    row: T;
+    columns: Column<T>[];
 }
 
-const TableRow: FC<Props> = ({row, columns}: Props) => {
+const TableRow = <T extends BaseType>({row, columns}: Props<T>) => {
     return (
         <tr key={row.id}>
             {columns.map((column) => (
-                <th key={column.id}>{row[column.title as keyof Row]}</th>
+                <th key={column.id}>{row[column.title] as ReactNode}</th>
             ))}
         </tr>
     )

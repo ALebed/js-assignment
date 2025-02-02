@@ -1,7 +1,7 @@
 import {ReactNode} from "react";
 import Card from "./Card";
 import {FetchConfig, useDataFetch} from "../../hooks/useDataFetch";
-import Loader from "../Loader";
+import Loader from "../loader/Loader";
 
 interface Props<S, D> {
     header?: ReactNode;

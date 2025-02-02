@@ -1,14 +1,14 @@
 import {FC, memo, useMemo} from "react";
 import Table from "../../components/table/Table";
-import {Column, Row} from "../../components/table/TableRow";
+import {Column, BaseType} from "../../components/table/TableRow";
 import {FactorGrades, normalizeFactorGrades} from "../../data/normalizeData";
-import {DataDTO} from "../../data/dataTypes";
+import {FactorGradesDTO} from "../../services/DTOs";
 
 interface Props {
-    data: DataDTO;
+    data: FactorGradesDTO;
 }
 
-const columns: Column[] = [
+const columns: Column<FactorGrades & BaseType>[] = [
     {id: "label", title: "label"},
     {id: "current", title: "current"},
     {id: "threeMonths", title: "threeMonths"},
@@ -16,7 +16,7 @@ const columns: Column[] = [
 ];
 
 const FactorGradesContent: FC<Props> = ({data}: Props) => {
-    const rows: (FactorGrades & Row)[] = useMemo(() => {
+    const rows: (FactorGrades & BaseType)[] = useMemo(() => {
         return normalizeFactorGrades(data).map((row: FactorGrades) => ({
             ...row,
             id: row.label,

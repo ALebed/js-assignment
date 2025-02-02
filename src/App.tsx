@@ -4,13 +4,12 @@ import UserContext, {User} from "./hocs/UserContext";
 import ErrorBoundary from "./components/errorBoundary/ErrorBoundary";
 import {FetchConfig, useDataFetch} from "./hooks/useDataFetch";
 import RatingsSummaryCard from "./containers/summary/RatingsSummaryCard";
-import {UserDTO} from "./data/dataTypes";
+import {UserDTO} from "./services/DTOs";
 import {normalizeUser} from "./data/normalizeData";
 import FactorGradesCard from "./containers/factorGrades/FactorGradesCard";
 
-const USER_PATH = "user";
 const fetchConfig: FetchConfig<User, UserDTO> = {
-    path: USER_PATH,
+    path: "user",
     normalize: normalizeUser,
     initialState: {isPremium: false},
 };

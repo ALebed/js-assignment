@@ -1,12 +1,11 @@
-import {FC} from "react";
-import TableRow, {Column, Row} from "./TableRow";
+import TableRow, {BaseType, Column} from "./TableRow";
 
 interface Props<T> {
     rows: T[];
-    columns: Column[];
+    columns: Column<T>[];
 }
 
-const Table: FC<Props<Row>> = <T extends Row>({rows, columns}: Props<T>) => {
+const Table = <T extends BaseType >({rows, columns}: Props<T>) => {
     if (!rows?.length || !columns?.length) return null;
 
     return (

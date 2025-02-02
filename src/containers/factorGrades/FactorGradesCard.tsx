@@ -3,23 +3,23 @@ import {FetchConfig} from "../../hooks/useDataFetch";
 import WithFetchingCard from "../../components/card/WithFetchingCard";
 import {withPremium} from "../../hocs/withPremium";
 import FactorGradesContent from "./FactorGradesContent";
-import {DataDTO} from "../../data/dataTypes";
+import {FactorGradesDTO} from "../../services/DTOs";
 
-const fetchConfig: FetchConfig<DataDTO, unknown> = {
+const fetchConfig: FetchConfig<FactorGradesDTO, unknown> = {
     path: [
         "factor-grades/now",
         "factor-grades/3m",
         "factor-grades/6m",
     ],
-    initialState: [] as unknown as DataDTO,
+    initialState: [] as unknown as FactorGradesDTO,
 };
 
 const FactorGradesCard: FC = () => {
     return (
         <WithFetchingCard
-            header="header"
+            header="Factor Grades"
             config={fetchConfig}
-            render={(data: DataDTO) => {
+            render={(data: FactorGradesDTO) => {
                 if (data?.length === fetchConfig.path.length) {
                     return <FactorGradesContent data={data} />
                 }

@@ -1,9 +1,13 @@
-import {DataDTO, QuantRankingDTO, RatingsSummaryDTO, UserDTO} from "./dataTypes";
+import {
+    FactorGradesDTO,
+    QuantRankingDTO,
+    RatingsSummaryDTO,
+    UserDTO
+} from "../services/DTOs";
 import {toCamelCase, toSpaceCase} from "../utils/stringUtils";
 
 // User data
 export interface User {isPremium: boolean}
-
 export const normalizeUser = (userDTO: UserDTO): User => ({isPremium: userDTO.premium});
 
 
@@ -51,18 +55,29 @@ export const normalizeRatingsSummary = (ratingsSummaryDTO: RatingsSummaryDTO): R
 
 
 // Factor Grades
+type FactorGradesLabel = "Valuation" | "Growth" | "Profitability" | "Momentum" | "Revisions";
 export interface FactorGrades {
-    label: string;
+    label: FactorGradesLabel;
     current: string;
     threeMonths: string;
     sixMonths: string;
 }
-export const normalizeFactorGrades = (dataDTO: DataDTO ): FactorGrades[] => {
-    console.log(dataDTO);
-    const mockData: FactorGrades[] = [
-        {label: "Row1", current: "A", threeMonths: "B", sixMonths: "C"},
-        {label: "Row2", current: "A2", threeMonths: "B2", sixMonths: "C2"},
-        {label: "Row3", current: "A3", threeMonths: "B3", sixMonths: "C3"},
-    ];
-    return mockData;
+const isOfTypeFactorGradesLabel =  (label: string): label is FactorGradesLabel => {
+    const validLabels: FactorGradesLabel[] = ["Valuation", "Growth", "Profitability", "Momentum", "Revisions"];
+    return validLabels.includes(label as FactorGradesLabel);
+};
+export const normalizeFactorGrades = (dataDTO: FactorGradesDTO ): FactorGrades[] => {
+    const [current, threeMonths, sixMonths]: FactorGradesDTO = dataDTO;
+    const data: FactorGrades[] = [];
+    Object.entries(current).map(([label, {current}]) => {
+        if (isOfTypeFactorGradesLabel(label)) {
+            data.push({
+                label,
+                current,
+                threeMonths: threeMonths[label],
+                sixMonths: sixMonths.data.find(([l]) => l === label)?.[1] || "",
+            });
+        }
+    });
+    return data;
 };
