@@ -1,16 +1,9 @@
 import {FC} from "react";
 import List from "../../components/list/List";
-import {normalizeQuantRanking, QuantRanking} from "../../data/normalizeData";
-import {QuantRankingDTO} from "../../services/DTOs";
+import {QuantRanking} from "../../data/normalizeData";
 import WithFetchingCard from "../../components/card/WithFetchingCard";
 import {createListItems} from "./createListItems";
-import {FetchConfig} from "../../hooks/useDataFetch";
-
-const fetchConfig: FetchConfig<QuantRanking, QuantRankingDTO> = {
-    path: "quant-ranking",
-    normalize: normalizeQuantRanking,
-    initialState: {} as QuantRanking,
-};
+import {fetchConfig} from "./config";
 
 const QuantRankingCard: FC = () => {
     return (
