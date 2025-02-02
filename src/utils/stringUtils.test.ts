@@ -1,4 +1,4 @@
-import {toCamelCase, capitalize} from "./stringUtils";
+import {toCamelCase, toSpaceCase, capitalize} from "./stringUtils";
 
 describe("toCamelCase", () => {
     it("should convert kebab-case to camelCase", () => {
@@ -23,6 +23,32 @@ describe("toCamelCase", () => {
 
     it("should return an empty string if input is empty", () => {
         expect(toCamelCase("")).toBe("");
+    });
+});
+
+describe("toSpaceCase", () => {
+    it("should replace delimiters in kebab-case with spaces", () => {
+        expect(toSpaceCase("hello-world")).toBe("hello world");
+    });
+
+    it("should replace delimiters in snake_case with spaces", () => {
+        expect(toSpaceCase("hello_world")).toBe("hello world");
+    });
+
+    it("should handle mixed delimiters", () => {
+        expect(toSpaceCase("hello-world_test")).toBe("hello world test");
+    });
+
+    it("should return the same string if no delimiters are present", () => {
+        expect(toSpaceCase("helloworld")).toBe("helloworld");
+    });
+
+    it("should handle capital letters correctly", () => {
+        expect(toSpaceCase("Hello-World")).toBe("Hello World");
+    });
+
+    it("should return an empty string if input is empty", () => {
+        expect(toSpaceCase("")).toBe("");
     });
 });
 

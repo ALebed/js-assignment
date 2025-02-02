@@ -1,5 +1,5 @@
-import {QuantRankingDTO, UserDTO} from "./dataTypes";
-import {toCamelCase} from "../utils/stringUtils";
+import {QuantRankingDTO, RatingsSummaryDTO, UserDTO} from "./dataTypes";
+import {toCamelCase, toSpaceCase} from "../utils/stringUtils";
 
 // User data
 export interface User {isPremium: boolean}
@@ -30,4 +30,20 @@ export const normalizeQuantRanking = ({sector, industry, rankings}: QuantRanking
             }
         )),
     };
+};
+
+// Ratings Summary
+export interface RatingsSummary {
+    label: string;
+    rating: string;
+    score: number;
+}
+export const normalizeRatingsSummary = (ratingsSummaryDTO: RatingsSummaryDTO): RatingsSummary[] => {
+    return Object.entries(ratingsSummaryDTO).map(([key, {rating, score}]) => {
+        return {
+            label: toSpaceCase(key),
+            rating,
+            score,
+        };
+    });
 };

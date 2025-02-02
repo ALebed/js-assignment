@@ -12,3 +12,10 @@ export interface QuantRankingDTO {
         industry_specific: RankDTO,
     };
 }
+
+interface SummaryDTO {rating: string; score: number}
+export interface RatingsSummaryDTO {
+    SA_Analysts: SummaryDTO;
+    Wall_Street: SummaryDTO;
+    Quant: SummaryDTO;
+}
