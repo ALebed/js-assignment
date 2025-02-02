@@ -3,6 +3,7 @@ import Card from "../../components/card/Card";
 import Table from "../../components/table/Table";
 import {RatingsSummary} from "../../hooks/normalizeData";
 import {Column, Row} from "../../components/table/TableRow";
+import {withPremium} from "../../hocs/withPremium";
 
 interface Props {
     data: RatingsSummary[];
@@ -29,4 +30,4 @@ const RatingsSummaryCard: FC<Props> = ({data}: Props) => {
     );
 };
 
-export default RatingsSummaryCard;
+export default withPremium<Props>(RatingsSummaryCard);

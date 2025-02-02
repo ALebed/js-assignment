@@ -1,7 +1,6 @@
 import {FC} from "react";
 import Card from "../../components/card/Card";
 import List from "../../components/list/List";
-import {withPremium} from "../../hocs/withPremium";
 import {isObjectEmpty} from "../../utils/objectUtils";
 import {QuantRanking} from "../../hooks/normalizeData";
 import {Item} from "../../components/list/ListItem";
@@ -45,4 +44,4 @@ const QuantRankingCard: FC<Props> = ({data}: Props) => {
 };
 
 
-export default withPremium<Props>(QuantRankingCard);
+export default QuantRankingCard;

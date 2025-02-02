@@ -7,10 +7,6 @@ jest.mock("../../utils/objectUtils", () => ({
     isObjectEmpty: jest.fn().mockImplementation(() => false),
 }));
 
-jest.mock("../../hocs/withPremium", () => ({
-    withPremium: <T,>(Component: T) => Component,
-}));
-
 describe("QuantRankingCard", () => {
     const mockData: QuantRanking = {
         rankings: [
