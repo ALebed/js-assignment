@@ -9,7 +9,7 @@ import {FetchConfig} from "../../hooks/useDataFetch";
 const RANKING_PATH = "quant-ranking";
 const fetchConfig: FetchConfig<QuantRanking, QuantRankingDTO> = {
     path: RANKING_PATH,
-    normalizer: normalizeQuantRanking,
+    normalize: normalizeQuantRanking,
     initialState: {} as QuantRanking,
 };
 

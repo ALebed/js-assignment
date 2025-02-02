@@ -19,3 +19,25 @@ export interface RatingsSummaryDTO {
     Wall_Street: SummaryDTO;
     Quant: SummaryDTO;
 }
+
+interface CurrentDTO {current: string}
+export interface FactorGradesCurrentDTO {
+    Valuation: CurrentDTO;
+    Growth: CurrentDTO;
+    Profitability: CurrentDTO;
+    Momentum: CurrentDTO;
+    Revisions: CurrentDTO;
+}
+export interface FactorGradesTreeMDTO {
+    Valuation: string;
+    Growth: string;
+    Profitability: string;
+    Momentum: string;
+    Revisions: string;
+}
+type SixMonthsLabelDTO = string;
+type SixMonthsValueDTO = string;
+export interface FactorGradesSixMDTO {
+    data: [SixMonthsLabelDTO, SixMonthsValueDTO][];
+}
+export type DataDTO = [FactorGradesCurrentDTO, FactorGradesTreeMDTO, FactorGradesSixMDTO];

@@ -6,11 +6,12 @@ import {FetchConfig, useDataFetch} from "./hooks/useDataFetch";
 import RatingsSummaryCard from "./containers/summary/RatingsSummaryCard";
 import {UserDTO} from "./data/dataTypes";
 import {normalizeUser} from "./data/normalizeData";
+import FactorGradesCard from "./containers/factorGrades/FactorGradesCard";
 
 const USER_PATH = "user";
 const fetchConfig: FetchConfig<User, UserDTO> = {
     path: USER_PATH,
-    normalizer: normalizeUser,
+    normalize: normalizeUser,
     initialState: {isPremium: false},
 };
 
@@ -32,6 +33,7 @@ const App: FC = () => {
                         isLoaded ? (
                             <section className="section container">
                                 <RatingsSummaryCard />
+                                <FactorGradesCard />
                                 <QuantRankingCard />
                             </section>
                         ) : (

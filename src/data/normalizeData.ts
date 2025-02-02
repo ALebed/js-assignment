@@ -1,4 +1,4 @@
-import {QuantRankingDTO, RatingsSummaryDTO, UserDTO} from "./dataTypes";
+import {DataDTO, QuantRankingDTO, RatingsSummaryDTO, UserDTO} from "./dataTypes";
 import {toCamelCase, toSpaceCase} from "../utils/stringUtils";
 
 // User data
@@ -32,6 +32,7 @@ export const normalizeQuantRanking = ({sector, industry, rankings}: QuantRanking
     };
 };
 
+
 // Ratings Summary
 export interface RatingsSummary {
     label: string;
@@ -46,4 +47,22 @@ export const normalizeRatingsSummary = (ratingsSummaryDTO: RatingsSummaryDTO): R
             score,
         };
     });
+};
+
+
+// Factor Grades
+export interface FactorGrades {
+    label: string;
+    current: string;
+    threeMonths: string;
+    sixMonths: string;
+}
+export const normalizeFactorGrades = (dataDTO: DataDTO ): FactorGrades[] => {
+    console.log(dataDTO);
+    const mockData: FactorGrades[] = [
+        {label: "Row1", current: "A", threeMonths: "B", sixMonths: "C"},
+        {label: "Row2", current: "A2", threeMonths: "B2", sixMonths: "C2"},
+        {label: "Row3", current: "A3", threeMonths: "B3", sixMonths: "C3"},
+    ];
+    return mockData;
 };

@@ -10,7 +10,7 @@ import {FetchConfig} from "../../hooks/useDataFetch";
 const RATINGS_SUMMARY_PATH = "ratings-summary";
 const fetchConfig: FetchConfig<RatingsSummary[], RatingsSummaryDTO> = {
     path: RATINGS_SUMMARY_PATH,
-    normalizer: normalizeRatingsSummary,
+    normalize: normalizeRatingsSummary,
     initialState: [],
 };
 const columns: Column[] = [
