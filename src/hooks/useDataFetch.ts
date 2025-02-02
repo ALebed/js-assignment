@@ -1,7 +1,15 @@
 import {useEffect, useState} from "react";
 import api from "../services/api";
 
-export const useDataFetch = <S, D>(path: string, normalizer: (data: D) => S, initialState: S) => {
+export interface FetchConfig<S, D> {
+    path: string;
+    normalizer: (data: D) => S;
+    initialState: S;
+}
+
+export const useDataFetch = <S, D>(config: FetchConfig<S, D>) => {
+    const {path, normalizer, initialState} = config;
+
     const [isLoaded, setIsLoaded] = useState<boolean>(false);
     const [hasError, setHasError] = useState<boolean>(false);
     const [state, setState] = useState<S>(initialState);

@@ -2,19 +2,24 @@ import {FC} from "react";
 import QuantRankingCard from "./containers/quantRanking/QuantRankingCard";
 import UserContext, {User} from "./hocs/UserContext";
 import ErrorBoundary from "./components/errorBoundary/ErrorBoundary";
-import {useDataFetch} from "./hooks/useDataFetch";
+import {FetchConfig, useDataFetch} from "./hooks/useDataFetch";
 import RatingsSummaryCard from "./containers/summary/RatingsSummaryCard";
 import {UserDTO} from "./data/dataTypes";
 import {normalizeUser} from "./data/normalizeData";
 
 const USER_PATH = "user";
+const fetchConfig: FetchConfig<User, UserDTO> = {
+    path: USER_PATH,
+    normalizer: normalizeUser,
+    initialState: {isPremium: false},
+};
 
 const App: FC = () => {
     const {
         state: user,
         hasError,
         isLoaded,
-    } = useDataFetch<User, UserDTO>(USER_PATH, normalizeUser, {isPremium: false});
+    } = useDataFetch<User, UserDTO>(fetchConfig);
 
     return (
         <ErrorBoundary hasError={hasError}>
