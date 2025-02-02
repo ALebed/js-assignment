@@ -1,7 +1,7 @@
 import {render, screen} from "@testing-library/react";
 import QuantRankingCard from "./QuantRankingCard";
 import {isObjectEmpty} from "../../utils/objectUtils";
-import {QuantRanking} from "../../hooks/normalizeData";
+import {QuantRanking} from "../../data/normalizeData";
 
 jest.mock("../../utils/objectUtils", () => ({
     isObjectEmpty: jest.fn().mockImplementation(() => false),

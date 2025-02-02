@@ -1,14 +1,13 @@
 import {FC} from "react";
 import Card from "../../components/card/Card";
 import List from "../../components/list/List";
-import {isObjectEmpty} from "../../utils/objectUtils";
-import {QuantRanking} from "../../hooks/normalizeData";
+import {normalizeQuantRanking, QuantRanking} from "../../data/normalizeData";
 import {Item} from "../../components/list/ListItem";
 import {capitalize} from "../../utils/stringUtils";
+import {useDataFetch} from "../../hooks/useDataFetch";
+import {QuantRankingDTO} from "../../data/dataTypes";
 
-interface Props {
-    data: QuantRanking;
-}
+const RANKING_PATH = "quant-ranking";
 
 const getTitleByType = (type: string): string => {
     const titleMap: Record<string, string> = {
@@ -32,13 +31,23 @@ const createListItems = ({rankings, ...rest}: QuantRanking): Item[] => {
     ];
 };
 
-const QuantRankingCard: FC<Props> = ({data}: Props) => {
-    if (isObjectEmpty(data)) return null;
+const QuantRankingCard: FC = () => {
+    const {
+        state,
+        hasError,
+        isLoaded,
+    } = useDataFetch<QuantRanking, QuantRankingDTO>(RANKING_PATH, normalizeQuantRanking, {} as QuantRanking);
 
     return (
         <Card header="Quant Ranking">
-            <List items={createListItems(data)} />
-            <a href="/" className="has-text-weight-semibold">Quant Ratings Beat The Market</a>
+            {hasError && <span>We could not load data. Please try again.</span>}
+            {!hasError && !isLoaded && <span>Loading...</span>}
+            {!hasError && isLoaded && (
+                <>
+                    <List items={createListItems(state)} />
+                    <a href="/" className="has-text-weight-semibold">Quant Ratings Beat The Market</a>
+                </>
+            )}
         </Card>
     );
 };
