@@ -5,6 +5,7 @@ export interface BaseType {
 }
 export interface Column<C> extends BaseType {
     title: keyof C;
+    header?: string;
 }
 interface Props<T extends BaseType> {
     row: T;

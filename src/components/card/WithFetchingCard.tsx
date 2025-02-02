@@ -17,9 +17,7 @@ const WithFetchingCard = <S, D>({header, initialHeight, config, render}: Props<S
         <Card header={header}>
             {hasError && <span>We could not load data. Please try again.</span>}
             {!hasError && !isLoaded && <Loader height={initialHeight} />}
-            {!hasError && isLoaded && (
-                <>{render(state)}</>
-            )}
+            {!hasError && isLoaded && render(state)}
         </Card>
     );
 };

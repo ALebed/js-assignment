@@ -10,9 +10,9 @@ interface Props {
 
 const columns: Column<FactorGrades & BaseType>[] = [
     {id: "label", title: "label"},
-    {id: "current", title: "current"},
-    {id: "threeMonths", title: "threeMonths"},
-    {id: "sixMonths", title: "sixMonths"},
+    {id: "current", title: "current", header: "Now"},
+    {id: "threeMonths", title: "threeMonths", header: "3M ago"},
+    {id: "sixMonths", title: "sixMonths", header: "6M ago"},
 ];
 
 const FactorGradesContent: FC<Props> = ({data}: Props) => {
