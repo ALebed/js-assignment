@@ -1,15 +1,7 @@
-import {QuantRanking} from "../../data/normalizeData";
 import {Item} from "../../components/list/ListItem";
 import {capitalize} from "../../utils/stringUtils";
-
-const getTitleByType = (type: string): string => {
-    const titleMap: Record<string, string> = {
-        overall: "Ranked Overall",
-        sector: "Ranked in Sector",
-        industrySpecific: "Ranked in Industry",
-    };
-    return titleMap[type] || type;
-};
+import {QuantRanking} from "../../data/models";
+import {getTitleByType} from "../../data/normalizers";
 
 export const createListItems = ({rankings, ...rest}: QuantRanking): Item[] => {
     return [

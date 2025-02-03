@@ -21,7 +21,7 @@ class ErrorBoundary extends Component<PropsWithChildren<Props>, State> {
     render() {
         if (this.props.hasError || this.state.hasError) {
             return (
-                <main className="content container">
+                <main className="container">
                     <h1>Page cannot be loaded</h1>
                     <section className="section">
                         <p>You may try to reload the page. If this does not help, please contact application support.</p>

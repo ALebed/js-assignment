@@ -1,5 +1,6 @@
 import {FC, useContext} from "react";
-import UserContext, {User} from "./UserContext";
+import UserContext from "./UserContext";
+import {User} from "../data/models";
 
 const NullishComponent: FC = () => null;
 

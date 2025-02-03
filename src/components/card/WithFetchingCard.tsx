@@ -1,7 +1,7 @@
 import {ReactNode} from "react";
 import Card from "./Card";
 import {FetchConfig, useDataFetch} from "../../hooks/useDataFetch";
-import Loader from "../Loader";
+import Loader, {LoaderSize} from "../loader/Loader";
 
 interface Props<S, D> {
     header?: ReactNode;
@@ -16,10 +16,8 @@ const WithFetchingCard = <S, D>({header, initialHeight, config, render}: Props<S
     return (
         <Card header={header}>
             {hasError && <span>We could not load data. Please try again.</span>}
-            {!hasError && !isLoaded && <Loader height={initialHeight} />}
-            {!hasError && isLoaded && (
-                <>{render(state)}</>
-            )}
+            {!hasError && !isLoaded && <Loader height={initialHeight} size={LoaderSize.Medium} />}
+            {!hasError && isLoaded && render(state)}
         </Card>
     );
 };

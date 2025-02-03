@@ -1,9 +1,6 @@
 import {createContext} from "react";
+import {User} from "../data/models";
 
-export interface User {
-    isPremium: boolean;
-}
-
-const UserContext = createContext({isPremium: false});
+const UserContext = createContext<User>({isPremium: false});
 
 export default UserContext;
