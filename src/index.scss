@@ -1,4 +1,12 @@
-@use 'bulma/bulma';
+@use 'bulma/sass/base';
+@use 'bulma/sass/helpers';
+@use 'bulma/sass/utilities';
+@use 'bulma/sass/components/card';
+@use 'bulma/sass/elements/box';
+@use 'bulma/sass/elements/content';
+@use 'bulma/sass/elements/loader';
+@use 'bulma/sass/elements/table';
+@use 'bulma/sass/elements/title';
 @use "bulma-list/sass/bulma-list";
 
 ul.list {

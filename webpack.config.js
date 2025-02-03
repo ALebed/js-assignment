@@ -5,7 +5,10 @@ module.exports = {
     mode: 'development',
     entry: './src/index.tsx',
     output: {
-        filename: 'bundle.js',
+        filename: '[name].[contenthash].js',
+        chunkFilename: '[name].[contenthash].js',
+        path: path.resolve(__dirname, 'dist'),
+        clean: true,
     },
     module: {
         rules: [
@@ -41,6 +44,25 @@ module.exports = {
             template: './public/index.html',
         }),
     ],
+    optimization: {
+        splitChunks: {
+            chunks: 'all',
+            cacheGroups: {
+                vendor: {
+                    test: /[\\/]node_modules[\\/]/,
+                    name: 'vendors',
+                    chunks: 'all',
+                },
+                styles: {
+                    test: /\.(css|scss)$/,
+                    name: 'styles',
+                    chunks: 'all',
+                    enforce: true,
+                },
+            },
+        },
+        runtimeChunk: 'single',
+    },
     devServer: {
         static: {
             directory: path.join(__dirname, 'dist'),
