@@ -1,11 +1,6 @@
 import {render, screen} from "@testing-library/react";
 import QuantRankingCard from "./QuantRankingCard";
-import {isObjectEmpty} from "../../utils/objectUtils";
 import {QuantRanking} from "../../data/models";
-
-jest.mock("../../utils/objectUtils", () => ({
-    isObjectEmpty: jest.fn().mockImplementation(() => false),
-}));
 
 describe("QuantRankingCard", () => {
     const mockData: QuantRanking = {
@@ -59,7 +54,6 @@ describe("QuantRankingCard", () => {
     });
 
     it("renders null if data is empty", () => {
-        (isObjectEmpty as jest.Mock).mockReturnValueOnce(true);
         const {container} = render(<QuantRankingCard data={{} as QuantRanking} />);
         expect(container.firstChild).toBeNull();
     });
