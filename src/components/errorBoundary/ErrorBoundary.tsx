@@ -21,12 +21,10 @@ class ErrorBoundary extends Component<PropsWithChildren<Props>, State> {
     render() {
         if (this.props.hasError || this.state.hasError) {
             return (
-                <main className="container">
-                    <h1>Page cannot be loaded</h1>
-                    <section className="section">
-                        <p>You may try to reload the page. If this does not help, please contact application support.</p>
-                    </section>
-                </main>
+                <>
+                    <h1 className="title is-5 has-text-centered">Page cannot be loaded</h1>
+                    <p className="has-text-centered">You may try to reload the page. If this does not help, please contact application support.</p>
+                </>
             );
         }
         return <>{this.props.children}</>;
