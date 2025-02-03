@@ -1,25 +1,42 @@
-import {render, screen} from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import QuantRankingCard from "./QuantRankingCard";
-import {QuantRanking} from "../../data/models";
+import { QuantRanking } from "../../data/models";
+import React, {ReactNode} from "react";
+
+const mockData: QuantRanking = {
+    rankings: [
+        {type: "overall", rank: 5, total: 100},
+        {type: "sector", rank: 2, total: 50},
+        {type: "industrySpecific", rank: 3, total: 70},
+        {type: "unexpectedType", rank: 7, total: 50},
+    ],
+    sector: "Tech",
+    industry: "Software",
+};
+
+interface MockProps {
+    header: string;
+    render: (state: QuantRanking) => ReactNode;
+}
+
+jest.mock("../../components/card/WithFetchingCard", () => function Component({header, render}: MockProps) {
+    return (
+        <div>
+            <h2>{header}</h2>
+            {render(mockData)}
+        </div>
+    );
+});
+
+jest.mock("./config", () => ({ fetchConfig: {} }));
 
 describe("QuantRankingCard", () => {
-    const mockData: QuantRanking = {
-        rankings: [
-            {type: "overall", rank: 5, total: 100},
-            {type: "sector", rank: 2, total: 50},
-            {type: "industrySpecific", rank: 3, total: 70},
-            {type: "unexpectedType", rank: 7, total: 50},
-        ],
-        sector: "Tech",
-        industry: "Software",
-    };
-
     beforeEach(() => {
         jest.clearAllMocks();
     });
 
     it("renders Card with list of items", () => {
-        render(<QuantRankingCard data={mockData} />);
+        render(<QuantRankingCard />);
 
         expect(screen.getByText("Sector")).toBeInTheDocument();
         expect(screen.getByText("Tech")).toBeInTheDocument();
@@ -44,17 +61,12 @@ describe("QuantRankingCard", () => {
     });
 
     it("renders Card component with header", () => {
-        render(<QuantRankingCard data={mockData} />);
-        expect(screen.getByText("Quant Ranking")).toBeInTheDocument();
+        render(<QuantRankingCard />);
+        expect(screen.getByRole("heading", { level: 2 })).toHaveTextContent("Quant Ranking");
     });
 
     it("renders Card component with anchor link", () => {
-        render(<QuantRankingCard data={mockData} />);
+        render(<QuantRankingCard />);
         expect(screen.getByRole("link")).toHaveTextContent("Quant Ratings Beat The Market");
-    });
-
-    it("renders null if data is empty", () => {
-        const {container} = render(<QuantRankingCard data={{} as QuantRanking} />);
-        expect(container.firstChild).toBeNull();
     });
 });
