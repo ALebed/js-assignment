@@ -9,7 +9,7 @@ const FactorGradesCard: FC = () => {
     return (
         <WithFetchingCard
             header="Factor Grades"
-            initialHeight={200}
+            initialHeight={240}
             config={fetchConfig}
             render={(data: FactorGradesDTO) => {
                 if (data?.length === fetchConfig.path.length) {

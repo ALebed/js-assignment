@@ -1,14 +1,52 @@
 @use 'bulma/sass/base';
 @use 'bulma/sass/helpers';
 @use 'bulma/sass/utilities';
-@use 'bulma/sass/components/card';
+@use 'bulma/sass/elements/title';
+@use 'bulma/sass/elements/block';
 @use 'bulma/sass/elements/box';
-@use 'bulma/sass/elements/content';
 @use 'bulma/sass/elements/loader';
 @use 'bulma/sass/elements/table';
-@use 'bulma/sass/elements/title';
+@use 'bulma/sass/layout/container';
+@use 'bulma/sass/layout/section';
+@use 'bulma/sass/themes';
 @use "bulma-list/sass/bulma-list";
+
+body {
+  background-color: #f5f2f1;
+}
 
 ul.list {
   margin: 0;
+}
+
+.header {
+  justify-content: center;
+  text-align: center;
+  height: 70px;
+  border-bottom: 8px solid #ff7200;
+
+  .title {
+    line-height: inherit;
+  }
+}
+
+.main {
+  display: flex;
+  min-height: calc(100vh - 70px);
+}
+
+.content {
+  flex-grow: 1;
+}
+
+@media (max-width: 1220px) {
+  .main {
+    flex-direction: column;
+  }
+  .section + .section {
+    padding-top: 0;
+  }
+  .content {
+    flex-grow: 0;
+  }
 }

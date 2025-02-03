@@ -1,5 +1,6 @@
 import {FC} from "react";
 import ListItem, {Item} from "./ListItem";
+import "./styles/list.scss";
 
 interface Props {
     items: Item[];

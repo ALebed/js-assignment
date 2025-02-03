@@ -15,7 +15,7 @@ const RatingsSummaryCard: FC = () => {
     return (
         <WithFetchingCard
             header="Ratings Summary"
-            initialHeight={150}
+            initialHeight={122}
             config={fetchConfig}
             render={(data: RatingsSummary[]) => (
                 <Table rows={enhanceData(data)} columns={columns} />

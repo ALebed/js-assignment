@@ -1,13 +1,13 @@
 import {FC} from "react";
-import QuantRankingCard from "./containers/quantRanking/QuantRankingCard";
 import UserContext from "./hocs/UserContext";
 import ErrorBoundary from "./components/errorBoundary/ErrorBoundary";
 import {FetchConfig, useDataFetch} from "./hooks/useDataFetch";
-import RatingsSummaryCard from "./containers/summary/RatingsSummaryCard";
 import {UserDTO} from "./services/DTOs";
 import {normalizeUser} from "./data/normalizers";
-import FactorGradesCard from "./containers/factorGrades/FactorGradesCard";
 import {User} from "./data/models";
+import Loader from "./components/loader/Loader";
+import CardsSideBar from "./containers/cards/CardsSideBar";
+import MainContentStub from "./containers/content/MainContentStub";
 
 const fetchConfig: FetchConfig<User, UserDTO> = {
     path: "user",
@@ -25,21 +25,18 @@ const App: FC = () => {
     return (
         <ErrorBoundary hasError={hasError}>
             <UserContext.Provider value={user}>
-                <main className="content">
-                    <nav className="navbar">
-                        <h1 className="title">Seeking Alpha - Cards</h1>
-                    </nav>
-                    {
-                        isLoaded ? (
-                            <section className="section container">
-                                <RatingsSummaryCard />
-                                <FactorGradesCard />
-                                <QuantRankingCard />
-                            </section>
-                        ) : (
-                            <div>Data Loading...</div> // TODO: add spinner
-                        )
-                    }
+                <nav className="header">
+                    <h1 className="title">Seeking Alpha - Cards</h1>
+                </nav>
+                <main className="container main">
+                {isLoaded ? (
+                    <>
+                        <MainContentStub />
+                        <CardsSideBar />
+                    </>
+                ) : (
+                    <Loader />
+                )}
                 </main>
             </UserContext.Provider>
         </ErrorBoundary>

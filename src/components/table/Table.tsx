@@ -1,4 +1,5 @@
 import TableRow, {BaseType, Column} from "./TableRow";
+import "./styles/table.scss";
 
 interface Props<T> {
     rows: T[];

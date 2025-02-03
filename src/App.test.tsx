@@ -4,6 +4,9 @@ import {useDataFetch} from "./hooks/useDataFetch";
 
 jest.mock("./hooks/useDataFetch");
 jest.mock("./containers/quantRanking/QuantRankingCard", () => jest.fn(() => <div>Mocked QuantRankingCard</div>));
+jest.mock("./components/loader/Loader", () => function Component() {
+    return <div data-testid="loader" />;
+})
 
 describe("App", () => {
     it("renders the title in navbar", () => {
@@ -29,7 +32,7 @@ describe("App", () => {
 
         render(<App />);
 
-        expect(screen.getByText("Data Loading...")).toBeInTheDocument();
+        expect(screen.getByTestId("loader")).toBeInTheDocument();
     });
 
     it("renders QuantRankingCard when data is loaded", () => {

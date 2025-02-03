@@ -9,12 +9,12 @@ const QuantRankingCard: FC = () => {
     return (
         <WithFetchingCard
             header="Quant Ranking"
-            initialHeight={300}
+            initialHeight={290}
             config={fetchConfig}
             render={(state: QuantRanking) => (
                 <>
                     <List items={createListItems(state)} />
-                    <a href="/" className="has-text-weight-semibold">Quant Ratings Beat The Market</a>
+                    <a href="/" className="has-text-weight-semibold">Quant Ratings Beat The Market &#x226B;</a>
                 </>
             )}
         />
