@@ -1,12 +1,13 @@
 import {FC} from "react";
 import QuantRankingCard from "./containers/quantRanking/QuantRankingCard";
-import UserContext, {User} from "./hocs/UserContext";
+import UserContext from "./hocs/UserContext";
 import ErrorBoundary from "./components/errorBoundary/ErrorBoundary";
 import {FetchConfig, useDataFetch} from "./hooks/useDataFetch";
 import RatingsSummaryCard from "./containers/summary/RatingsSummaryCard";
 import {UserDTO} from "./services/DTOs";
-import {normalizeUser} from "./data/normalizeData";
+import {normalizeUser} from "./data/normalizers";
 import FactorGradesCard from "./containers/factorGrades/FactorGradesCard";
+import {User} from "./data/models";
 
 const fetchConfig: FetchConfig<User, UserDTO> = {
     path: "user",

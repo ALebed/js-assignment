@@ -1,9 +1,10 @@
 import {FC, memo, useMemo} from "react";
 import Table from "../../components/table/Table";
 import {BaseType} from "../../components/table/TableRow";
-import {FactorGrades, normalizeFactorGrades} from "../../data/normalizeData";
+import {normalizeFactorGrades} from "../../data/normalizers";
 import {FactorGradesDTO} from "../../services/DTOs";
 import {columns} from "./config";
+import {FactorGrades} from "../../data/models";
 
 interface Props {
     data: FactorGradesDTO;

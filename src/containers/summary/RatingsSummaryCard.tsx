@@ -1,10 +1,10 @@
 import {FC} from "react";
 import Table from "../../components/table/Table";
-import {RatingsSummary} from "../../data/normalizeData";
 import {BaseType} from "../../components/table/TableRow";
 import {withPremium} from "../../hocs/withPremium";
 import WithFetchingCard from "../../components/card/WithFetchingCard";
 import {columns, fetchConfig} from "./config";
+import {RatingsSummary} from "../../data/models";
 
 const RatingsSummaryCard: FC = () => {
     const enhanceData = (data: RatingsSummary[]): (RatingsSummary & BaseType)[] => data.map((row: RatingsSummary) => ({

@@ -1,6 +1,7 @@
 import {render, screen} from "@testing-library/react";
 import {withPremium} from "./withPremium";
-import UserContext, {User} from "./UserContext";
+import UserContext from "./UserContext";
+import {User} from "../data/models";
 
 const Component = ({text}: {text?: string}) => {
     return <div data-testid="wrapped-component">{text}</div>

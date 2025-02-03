@@ -1,7 +1,8 @@
 import {FetchConfig} from "../../hooks/useDataFetch";
-import {normalizeRatingsSummary, RatingsSummary} from "../../data/normalizeData";
+import {normalizeRatingsSummary} from "../../data/normalizers";
 import {RatingsSummaryDTO} from "../../services/DTOs";
 import {BaseType, Column} from "../../components/table/TableRow";
+import {RatingsSummary} from "../../data/models";
 
 export const fetchConfig: FetchConfig<RatingsSummary[], RatingsSummaryDTO> = {
     path: "ratings-summary",

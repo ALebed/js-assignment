@@ -1,9 +1,9 @@
 import {FC} from "react";
 import List from "../../components/list/List";
-import {QuantRanking} from "../../data/normalizeData";
 import WithFetchingCard from "../../components/card/WithFetchingCard";
 import {createListItems} from "./createListItems";
 import {fetchConfig} from "./config";
+import {QuantRanking} from "../../data/models";
 
 const QuantRankingCard: FC = () => {
     return (

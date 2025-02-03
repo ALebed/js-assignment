@@ -1,4 +1,4 @@
-import {normalizeQuantRanking, normalizeUser} from "./normalizeData";
+import {normalizeQuantRanking, normalizeUser} from "./normalizers";
 import {QuantRankingDTO, UserDTO} from "../services/DTOs";
 
 describe("normalizeUser", () => {

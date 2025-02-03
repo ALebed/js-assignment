@@ -1,7 +1,7 @@
 import {FetchConfig} from "../../hooks/useDataFetch";
 import {FactorGradesDTO} from "../../services/DTOs";
 import {BaseType, Column} from "../../components/table/TableRow";
-import {FactorGrades} from "../../data/normalizeData";
+import {FactorGrades} from "../../data/models";
 
 export const fetchConfig: FetchConfig<FactorGradesDTO, unknown> = {
     path: [
